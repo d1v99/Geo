@@ -1,9 +1,13 @@
 # 💛 A Surprise For You
 
-A little romantic website to surprise your girlfriend with gifts — like a
-personal collection of gift cards (a massage, lashes, nails, date night…).
-She opens a gift box, flips each card to reveal the surprise, and gets a
-voucher code to "redeem" with you.
+A little romantic "pick a box" website to surprise your girlfriend. She opens
+a gift box, then sees **three sealed mystery boxes** (massage, lashes, sushi
+buffet) and gets to **keep only one** — she picks blind, it reveals with a
+flourish, and the other two gently lock with a "saved for another day" note.
+Her choice sticks, so she can't refresh and pick again.
+
+**Reset her choice** (so she can pick again, or before you hand her the link):
+open the link with `?reset` on the end, e.g. `https://.../geo/?reset`.
 
 Everything lives in a single file: **`index.html`** (plus the photo in
 `assets/`). Nothing to install.
@@ -26,13 +30,7 @@ online for free:
 Open **`index.html`** and scroll to the block marked
 **"⬇ EDIT YOUR GIFTS HERE ⬇"**. That's the only part you change:
 
-- `CONFIG` — her name, your name, the photo, and the messages.
-- `GIFTS` — each gift is a `{ ... }` block; copy one, edit the words, save.
-
-Each gift's `status`:
-
-| status        | what she sees                                   |
-|---------------|-------------------------------------------------|
-| `"available"` | ready to flip + redeem (shows a gift code)      |
-| `"soon"`      | stays a mystery, marked "Coming soon"           |
-| `"redeemed"`  | shown with a "REDEEMED" stamp once it's used    |
+- `CONFIG` — her name, your name, the photo, and the messages (including the
+  "pick one" prompt and the celebration line shown after she chooses).
+- `GIFTS` — each box is a `{ ... }` block; she keeps exactly one. Add or remove
+  blocks to change how many boxes she chooses between.

@@ -17,14 +17,10 @@
 
   <!-- ===================================================================
        EVERYTHING IS IN THIS ONE FILE so it always loads correctly.
-
-       To edit your gifts & names, scroll down to the part that says
-       "EDIT YOUR GIFTS HERE" near the bottom. That's the only bit you
-       need to touch.
+       To edit your gifts & names, scroll down to "EDIT YOUR GIFTS HERE".
        =================================================================== -->
 
   <style>
-  /* ---------- Base ---------- */
   :root {
     --bg-1: #1a0f14;
     --bg-2: #2a131f;
@@ -49,40 +45,20 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
-  .screen {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 32px 20px;
-    text-align: center;
-  }
+  .screen { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 20px; text-align: center; }
   /* hearts */
   .hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
   .hearts span { position: absolute; bottom: -40px; font-size: 18px; opacity: 0; animation: floatUp linear infinite; }
   @keyframes floatUp {
-    0%   { transform: translateY(0) scale(.6) rotate(0deg);   opacity: 0; }
-    10%  { opacity: .55; }
-    90%  { opacity: .45; }
+    0% { transform: translateY(0) scale(.6) rotate(0deg); opacity: 0; }
+    10% { opacity: .55; } 90% { opacity: .45; }
     100% { transform: translateY(-110vh) scale(1) rotate(40deg); opacity: 0; }
   }
   /* screen 1 */
   .box-screen { position: relative; z-index: 1; }
-  .photo-frame {
-    width: clamp(150px, 42vw, 200px);
-    aspect-ratio: 3 / 4;
-    margin-bottom: 26px;
-    border-radius: 18px;
-    padding: 8px;
-    background: linear-gradient(160deg, rgba(255,255,255,.18), rgba(255,255,255,.05));
-    border: 1px solid rgba(255,255,255,.18);
-    box-shadow: 0 24px 50px -22px rgba(0,0,0,.7);
-    transform: rotate(-3deg);
-    animation: cardIn .8s both;
-  }
+  .photo-frame { width: clamp(150px, 42vw, 200px); aspect-ratio: 3 / 4; margin-bottom: 26px; border-radius: 18px; padding: 8px; background: linear-gradient(160deg, rgba(255,255,255,.18), rgba(255,255,255,.05)); border: 1px solid rgba(255,255,255,.18); box-shadow: 0 24px 50px -22px rgba(0,0,0,.7); transform: rotate(-3deg); animation: cardIn .8s both; }
   .photo-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; display: block; }
-  .box-eyebrow { font-family: "Poppins"; letter-spacing: .35em; text-transform: uppercase; font-size: 12px; color: var(--gold); margin-bottom: 14px; }
+  .box-eyebrow { letter-spacing: .35em; text-transform: uppercase; font-size: 12px; color: var(--gold); margin-bottom: 14px; }
   .box-title { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(30px, 7vw, 52px); line-height: 1.1; max-width: 12ch; margin-bottom: 42px; }
   .giftbox { --size: 150px; position: relative; width: var(--size); height: var(--size); background: none; border: none; cursor: pointer; margin-bottom: 36px; animation: bob 2.4s ease-in-out infinite; }
   @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -108,32 +84,36 @@
   .gifts-header { padding: 48px 0 28px; }
   .gifts-eyebrow { letter-spacing: .35em; text-transform: uppercase; font-size: 12px; color: var(--gold); margin-bottom: 10px; }
   .gifts-title { font-family: "Cormorant Garamond", serif; font-size: clamp(34px, 8vw, 56px); font-weight: 600; margin-bottom: 8px; }
-  .gifts-sub { color: var(--muted); font-weight: 300; max-width: 32ch; margin: 0 auto; }
-  .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; width: 100%; max-width: 820px; margin: 0 auto; }
+  .gifts-sub { color: var(--muted); font-weight: 300; max-width: 34ch; margin: 0 auto; min-height: 1.4em; transition: opacity .3s; }
+  .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; width: 100%; max-width: 760px; margin: 0 auto; }
   /* card */
-  .card { position: relative; height: 260px; perspective: 1200px; cursor: pointer; border: none; background: none; padding: 0; font-family: inherit; text-align: left; animation: cardIn .6s both; }
+  .card { position: relative; height: 260px; perspective: 1200px; cursor: pointer; border: none; background: none; padding: 0; font-family: inherit; text-align: left; animation: cardIn .6s both; transition: opacity .5s, transform .5s, filter .5s; }
   @keyframes cardIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; } }
   .card__inner { position: relative; width: 100%; height: 100%; transition: transform .7s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
   .card.is-flipped .card__inner { transform: rotateY(180deg); }
   .card__face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; box-shadow: 0 20px 40px -22px rgba(0,0,0,.7); }
-  .card__front { align-items: center; justify-content: center; gap: 14px; background: linear-gradient(150deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.12); }
-  .card__front .q { font-size: 52px; }
+  .card__front { align-items: center; justify-content: center; gap: 12px; background: linear-gradient(150deg, rgba(255,255,255,.10), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.14); }
+  .card__front .q { font-size: 56px; animation: wiggle 3s ease-in-out infinite; }
+  @keyframes wiggle { 0%,100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
   .card__front .tap { color: var(--gold); letter-spacing: .25em; text-transform: uppercase; font-size: 11px; }
   .card__front .peek { color: var(--muted); font-size: 13px; font-weight: 300; }
   .card__back { transform: rotateY(180deg); justify-content: space-between; color: #2a131f; background: linear-gradient(155deg, var(--c1), var(--c2)); }
   .card__back .emoji { font-size: 36px; }
   .card__back .value { align-self: flex-start; margin-top: 6px; background: rgba(255,255,255,.35); padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: .04em; }
-  .card__back h3 { font-family: "Cormorant Garamond", serif; font-size: 27px; font-weight: 600; line-height: 1.1; margin-top: 8px; }
+  .card__back h3 { font-family: "Cormorant Garamond", serif; font-size: 26px; font-weight: 600; line-height: 1.1; margin-top: 8px; }
   .card__back .sub { font-size: 13px; font-weight: 500; opacity: .8; }
   .card__back .redeem-btn { margin-top: auto; align-self: flex-start; background: #2a131f; color: var(--gold-soft); border: none; border-radius: 999px; padding: 10px 20px; font-family: inherit; font-weight: 500; font-size: 13px; cursor: pointer; transition: transform .15s; }
   .card__back .redeem-btn:active { transform: scale(.95); }
-  .card.status-soon .card__back { filter: saturate(.5); }
-  .flag { position: absolute; top: 14px; right: -2px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; padding: 5px 12px; border-radius: 4px 0 0 4px; color: #2a131f; z-index: 2; }
-  .flag.soon { background: var(--gold); }
-  .flag.redeemed { background: #cfcfcf; }
-  .stamp { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-16deg); border: 3px solid #b23b3b; color: #b23b3b; font-weight: 700; letter-spacing: .15em; padding: 6px 14px; border-radius: 8px; font-size: 18px; opacity: .85; pointer-events: none; }
+  /* chosen / locked states */
+  .card.is-chosen { animation: chosenPulse 2.4s ease-in-out infinite; }
+  @keyframes chosenPulse { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.03); } }
+  .card.is-chosen .card__face { box-shadow: 0 0 0 3px var(--gold-soft), 0 24px 50px -18px rgba(231,192,138,.6); }
+  .card.is-locked { opacity: .5; filter: grayscale(.4); pointer-events: none; }
+  .lock-veil { position: absolute; inset: 0; border-radius: 20px; background: rgba(20,10,14,.55); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; z-index: 4; backface-visibility: visible; }
+  .lock-veil .lock { font-size: 30px; }
+  .lock-veil .lock-txt { font-size: 12px; color: var(--gold-soft); font-weight: 300; max-width: 16ch; }
   /* love note */
-  .love-note { margin: 56px auto 60px; max-width: 40ch; color: var(--muted); font-weight: 300; line-height: 1.7; }
+  .love-note { margin: 50px auto 60px; max-width: 40ch; color: var(--muted); font-weight: 300; line-height: 1.7; }
   .love-note .signed { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 22px; color: var(--gold-soft); margin-top: 14px; }
   /* modal */
   .modal { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; }
@@ -168,12 +148,12 @@
     <p class="box-hint" id="boxHint">Tap the box to open your surprise</p>
   </section>
 
-  <!-- SCREEN 2: gifts -->
+  <!-- SCREEN 2: pick a box -->
   <main id="giftsScreen" class="screen gifts-screen" hidden>
     <header class="gifts-header">
-      <p class="gifts-eyebrow">Your gift collection</p>
+      <p class="gifts-eyebrow" id="giftsEyebrow">Pick a box</p>
       <h2 class="gifts-title" id="giftsGreeting">Hi 💛</h2>
-      <p class="gifts-sub">Tap any card to reveal your gift. Redeem whenever you like.</p>
+      <p class="gifts-sub" id="giftsSub">Choose just one — you can only keep one, so choose with your heart 💛</p>
     </header>
     <div class="gift-grid" id="giftGrid"></div>
     <footer class="love-note">
@@ -194,18 +174,14 @@
         <span class="voucher__label">Gift code</span>
         <span class="voucher__code" id="modalCode"></span>
       </div>
-      <p class="modal__redeem">Show this code to redeem your gift 💛</p>
+      <p class="modal__redeem">Show this code to me to redeem your gift 💛</p>
     </div>
   </div>
 
   <script>
   /* =====================================================================
      ⬇⬇⬇  EDIT YOUR GIFTS HERE  ⬇⬇⬇
-     This is the only part you normally change.
-
-     status can be:  "available"  -> ready to redeem (shows a code)
-                     "soon"       -> stays a mystery, "Coming soon"
-                     "redeemed"   -> shows a "REDEEMED" stamp
+     She picks ONE of these mystery boxes. The other two lock.
      ===================================================================== */
   const CONFIG = {
     recipientName: "Georgiana",
@@ -213,48 +189,63 @@
     photo: "assets/us.jpeg",          // set to "" to hide the photo
     openingTitle: "A little something for you",
     openingSubtitle: "Tap the box to open your surprise",
+
+    // shown before she picks
+    pickPrompt: "Three mystery boxes, but you can only keep one. Tap the one your heart wants 💛",
+    // shown after she picks (use {gift} for the gift name)
+    chosenPrompt: "Ahh you chose {gift}! Amazing pick — it's all yours 💛",
+
     loveNote:
-      "Just a few little ways to spoil you. Pick whichever one you want, " +
-      "whenever you want it, and it's on me. More surprises will keep " +
-      "showing up here. I love you. 💛",
+      "Whatever you picked, you deserve it and so much more. " +
+      "I love spoiling you. There'll be more surprises soon. I love you. 💛",
   };
 
   const GIFTS = [
     {
-      emoji: "💆‍♀️", title: "A Relaxing Massage", subtitle: "Full hour, fully on me",
+      emoji: "💆‍♀️", title: "A Relaxing Massage", subtitle: "Full hour, on me",
       value: "1 Massage",
-      description: "Book your next massage anywhere you like — I've got the bill. Go relax, you deserve it.",
-      code: "RELAX-01", accent: "rose", status: "available",
+      description: "Book your next massage anywhere you like — I've got the bill. Go relax, you've earned it.",
+      code: "RELAX-01", accent: "rose",
     },
     {
       emoji: "👁️", title: "Lash Appointment", subtitle: "Fresh set, my treat",
       value: "1 Lash Set",
-      description: "Your next lash appointment is paid for. Go get those gorgeous lashes done and feel amazing.",
-      code: "LASH-02", accent: "violet", status: "available",
+      description: "Your next lash appointment is fully paid for. Go get those gorgeous lashes done.",
+      code: "LASH-02", accent: "violet",
     },
     {
-      emoji: "💅", title: "Mani + Pedi", subtitle: "Whenever you fancy it",
-      value: "Nails Set",
-      description: "A full mani and pedi on me. Treat your hands and feet to a little pampering session.",
-      code: "NAILS-03", accent: "amber", status: "soon",
-    },
-    {
-      emoji: "🍽️", title: "Date Night Dinner", subtitle: "Your choice of place",
-      value: "Dinner for 2",
-      description: "Pick the restaurant you've been wanting to try and let's go. Dress up — it's a proper date.",
-      code: "DATE-04", accent: "emerald", status: "soon",
+      emoji: "🍣", title: "Sushi Buffet", subtitle: "All you can eat, my shout",
+      value: "Sushi for 2",
+      description: "All-you-can-eat sushi buffet on me. Bring your appetite — we're getting everything on the menu.",
+      code: "SUSHI-03", accent: "emerald",
     },
   ];
   /* =====================================================================
      ⬆⬆⬆  END OF THE EDITABLE PART  ⬆⬆⬆
      ===================================================================== */
 
+  const STORE_KEY = "geo_chosen_gift";
   const ACCENTS = {
     rose: ["var(--rose-1)", "var(--rose-2)"],
     violet: ["var(--violet-1)", "var(--violet-2)"],
     amber: ["var(--amber-1)", "var(--amber-2)"],
     emerald: ["var(--emerald-1)", "var(--emerald-2)"],
   };
+
+  // Secret reset for Victor: open the link with ?reset on the end.
+  if (location.search.indexOf("reset") !== -1) {
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+  }
+
+  function getChosen() {
+    try {
+      const v = localStorage.getItem(STORE_KEY);
+      return v === null ? null : parseInt(v, 10);
+    } catch (e) { return null; }
+  }
+  function setChosen(i) {
+    try { localStorage.setItem(STORE_KEY, String(i)); } catch (e) {}
+  }
 
   function init() {
     spawnHearts();
@@ -285,6 +276,7 @@
     document.getElementById("boxTitle").textContent = CONFIG.openingTitle;
     document.getElementById("boxHint").textContent = CONFIG.openingSubtitle;
     document.getElementById("giftsGreeting").textContent = "Hi " + CONFIG.recipientName + " 💛";
+    document.getElementById("giftsSub").textContent = CONFIG.pickPrompt;
     document.getElementById("loveNote").textContent = CONFIG.loveNote;
     document.getElementById("signed").textContent = "— " + CONFIG.fromName;
   }
@@ -310,12 +302,12 @@
   function burst() {
     const layer = document.querySelector(".hearts");
     const emojis = ["💛", "💕", "✨", "🎉", "💗"];
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < 22; i++) {
       const h = document.createElement("span");
       h.textContent = emojis[i % emojis.length];
-      h.style.left = 35 + Math.random() * 30 + "vw";
+      h.style.left = 30 + Math.random() * 40 + "vw";
       h.style.bottom = "45vh";
-      h.style.fontSize = 16 + Math.random() * 20 + "px";
+      h.style.fontSize = 16 + Math.random() * 22 + "px";
       h.style.animationDuration = 4 + Math.random() * 4 + "s";
       h.style.animationDelay = "0s";
       layer.appendChild(h);
@@ -326,54 +318,80 @@
   function buildCards() {
     const grid = document.getElementById("giftGrid");
     grid.innerHTML = "";
+    const already = getChosen();
+
     GIFTS.forEach((gift, i) => {
       const [c1, c2] = ACCENTS[gift.accent] || ACCENTS.rose;
       const card = document.createElement("button");
-      card.className = "card status-" + gift.status;
+      card.className = "card";
       card.style.setProperty("--c1", c1);
       card.style.setProperty("--c2", c2);
-      card.style.animationDelay = i * 0.09 + "s";
-
-      const isSoon = gift.status === "soon";
-      const isRedeemed = gift.status === "redeemed";
-      const flag = isSoon
-        ? '<span class="flag soon">Coming soon</span>'
-        : isRedeemed ? '<span class="flag redeemed">Used</span>' : "";
-      const peek = isSoon ? "A surprise still wrapped…" : "Tap to reveal";
-      const backBtn = isSoon
-        ? '<span class="redeem-btn" style="opacity:.6;cursor:default">Soon 💫</span>'
-        : isRedeemed
-        ? '<span class="redeem-btn" style="opacity:.6;cursor:default">Redeemed</span>'
-        : '<span class="redeem-btn">Redeem 💛</span>';
-      const stamp = isRedeemed ? '<span class="stamp">REDEEMED</span>' : "";
+      card.style.animationDelay = i * 0.1 + "s";
 
       card.innerHTML =
-        flag +
         '<div class="card__inner">' +
           '<div class="card__face card__front">' +
             '<span class="q">🎁</span>' +
-            '<span class="tap">Gift ' + (i + 1) + '</span>' +
-            '<span class="peek">' + peek + '</span>' +
+            '<span class="tap">Box ' + (i + 1) + '</span>' +
+            '<span class="peek">Tap to choose</span>' +
           '</div>' +
           '<div class="card__face card__back">' +
-            stamp +
             '<span class="emoji">' + gift.emoji + '</span>' +
             '<span class="value">' + gift.value + '</span>' +
             '<h3>' + gift.title + '</h3>' +
             '<span class="sub">' + gift.subtitle + '</span>' +
-            backBtn +
+            '<span class="redeem-btn">Redeem 💛</span>' +
           '</div>' +
         '</div>';
 
-      card.addEventListener("click", () => {
-        if (!card.classList.contains("is-flipped")) {
-          card.classList.add("is-flipped");
-          return;
-        }
-        if (gift.status === "available") openModal(gift);
-      });
+      card.addEventListener("click", () => onCardClick(i));
       grid.appendChild(card);
     });
+
+    // If she already picked earlier, restore that state (no confetti).
+    if (already !== null && GIFTS[already]) {
+      revealChoice(already, false);
+    }
+  }
+
+  function onCardClick(i) {
+    const chosen = getChosen();
+    if (chosen === null) {
+      // first ever pick — lock it in
+      setChosen(i);
+      revealChoice(i, true);
+      return;
+    }
+    // already chosen: only the chosen card is interactive -> open its code
+    if (i === chosen) openModal(GIFTS[i]);
+  }
+
+  function revealChoice(chosenIndex, celebrate) {
+    const cards = document.querySelectorAll(".gift-grid .card");
+    cards.forEach((card, i) => {
+      if (i === chosenIndex) {
+        card.classList.add("is-flipped", "is-chosen");
+      } else {
+        card.classList.add("is-locked");
+        if (!card.querySelector(".lock-veil")) {
+          const veil = document.createElement("div");
+          veil.className = "lock-veil";
+          veil.innerHTML = '<span class="lock">🔒</span><span class="lock-txt">Saved for another day 💫</span>';
+          card.appendChild(veil);
+        }
+      }
+    });
+
+    // update the header text
+    document.getElementById("giftsEyebrow").textContent = "Your gift";
+    document.getElementById("giftsSub").textContent =
+      CONFIG.chosenPrompt.replace("{gift}", GIFTS[chosenIndex].title);
+
+    if (celebrate) {
+      burst();
+      // pop the code up automatically a moment after the flip
+      setTimeout(() => openModal(GIFTS[chosenIndex]), 1100);
+    }
   }
 
   function openModal(gift) {

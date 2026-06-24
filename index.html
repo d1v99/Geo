@@ -134,13 +134,14 @@
   .modal__emoji { font-size: 48px; margin-bottom: 8px; }
   .modal__title { font-family: "Cormorant Garamond", serif; font-size: 30px; font-weight: 600; margin-bottom: 8px; }
   .modal__desc { font-size: 14px; line-height: 1.6; color: #5e4a78; margin-bottom: 20px; }
-  .claim__line { font-size: 14px; color: #6e5690; margin-bottom: 18px; }
-  .claim__btns { display: flex; flex-direction: column; gap: 10px; }
-  .claim-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; border-radius: 14px; font-family: inherit; font-weight: 600; font-size: 15px; text-decoration: none; transition: transform .15s; }
-  .claim-btn:active { transform: scale(.97); }
-  .claim-btn.text { background: linear-gradient(160deg, #a86ff0, #7c45c8); color: #fff; }
-  .claim-btn.call { background: linear-gradient(160deg, #7d8cf0, #5566e0); color: #fff; }
-  .claim-btn.snap { background: #fffc00; color: #1a1a1a; }
+  .modal__yay { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 21px; color: #a86ff0; margin-bottom: 0; }
+  .ticket { position: relative; display: block; width: 100%; margin: 12px 0 16px; padding: 18px 16px; border-radius: 16px; background: linear-gradient(160deg, #f4ebff, #e7d6ff); border: 2px dashed #b98ee8; cursor: pointer; font-family: inherit; transition: transform .15s; overflow: hidden; }
+  .ticket:active { transform: scale(.98); }
+  .ticket::before, .ticket::after { content: ""; position: absolute; top: 50%; width: 20px; height: 20px; border-radius: 50%; background: #efe6ff; transform: translateY(-50%); }
+  .ticket::before { left: -12px; box-shadow: inset -2px 0 0 #b98ee8; }
+  .ticket::after { right: -12px; box-shadow: inset 2px 0 0 #b98ee8; }
+  .ticket__label { display: block; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #8a6ab0; margin-bottom: 8px; }
+  .ticket__code { font-family: "Cormorant Garamond", serif; font-size: 34px; font-weight: 600; letter-spacing: .12em; color: #7c45c8; }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
   </style>
 </head>
@@ -190,10 +191,14 @@
     <div class="modal__card" role="dialog" aria-modal="true">
       <button class="modal__close" data-close aria-label="Close">&times;</button>
       <div class="modal__emoji" id="modalEmoji">🎁</div>
+      <p class="modal__yay">Yay, it's yours!</p>
       <h3 class="modal__title" id="modalTitle"></h3>
       <p class="modal__desc" id="modalDesc"></p>
-      <p class="claim__line" id="claimLine">To claim it, come tell me 💜</p>
-      <div class="claim__btns" id="claimBtns"></div>
+      <button class="ticket" id="ticket" type="button">
+        <span class="ticket__label" id="ticketLabel">Your secret code · tap to copy</span>
+        <span class="ticket__code" id="modalCode"></span>
+      </button>
+      <p class="modal__redeem" id="claimLine">Text me this code 💜 and I'll make it happen</p>
     </div>
   </div>
 
@@ -235,18 +240,8 @@
       "Whatever you picked, you deserve it and so much more. " +
       "I love spoiling you. There'll be more surprises soon. I love you. 💜",
 
-    // ── How she reaches YOU when she taps "Redeem" ──────────────────
-    // Fill in your real number + Snapchat. Set any to false to hide it.
-    contact: {
-      phone: "+447305418654",   // your number (used for Text & Call)
-      snapchat: "Victxr29",     // your Snapchat username
-      showText: true,           // 💬 Text / iMessage me
-      showCall: true,           // 📞 Call me
-      showSnapchat: true,       // 👻 Snapchat me
-    },
-    claimLine: "To claim it, come tell me 💜",
-    // the message pre-typed when she texts you ({gift} = the gift name)
-    claimMessage: "Hey my love 💜 I'm claiming my {gift}!",
+    // the little line under the code in the popup
+    claimLine: "Text me this code 💜 and I'll make it happen",
   };
 
   const GIFTS = [
@@ -360,12 +355,12 @@
       const p = document.createElement("p");
       p.className = "letter-line" + (i === lines.length - 1 ? " final" : "");
       p.textContent = text;
-      p.style.animationDelay = 0.6 + i * 0.7 + "s";
+      p.style.animationDelay = 0.6 + i * 1.1 + "s";
       wrap.appendChild(p);
     });
     const btn = document.getElementById("continueBtn");
     btn.style.animation = "lineIn 1s ease forwards";
-    btn.style.animationDelay = 0.9 + lines.length * 0.7 + "s";
+    btn.style.animationDelay = 0.9 + lines.length * 1.1 + "s";
   }
 
   function showGifts() {
@@ -476,34 +471,27 @@
     }
   }
 
-  function addClaimBtn(wrap, kind, label, href, external) {
-    const a = document.createElement("a");
-    a.className = "claim-btn " + kind;
-    a.textContent = label;
-    a.href = href;
-    if (external) { a.target = "_blank"; a.rel = "noopener"; }
-    wrap.appendChild(a);
-  }
-
   function openModal(gift) {
     document.getElementById("modalEmoji").textContent = gift.emoji;
     document.getElementById("modalTitle").textContent = gift.title;
     document.getElementById("modalDesc").textContent = gift.description;
+    document.getElementById("modalCode").textContent = gift.code;
     document.getElementById("claimLine").textContent = CONFIG.claimLine;
 
-    const c = CONFIG.contact || {};
-    const msg = (CONFIG.claimMessage || "").replace("{gift}", gift.title);
-    const btns = document.getElementById("claimBtns");
-    btns.innerHTML = "";
-    if (c.showText && c.phone) {
-      addClaimBtn(btns, "text", "💬 Text me", "sms:" + c.phone + "?&body=" + encodeURIComponent(msg));
-    }
-    if (c.showCall && c.phone) {
-      addClaimBtn(btns, "call", "📞 Call me", "tel:" + c.phone);
-    }
-    if (c.showSnapchat && c.snapchat) {
-      addClaimBtn(btns, "snap", "👻 Snapchat me", "https://www.snapchat.com/add/" + c.snapchat, true);
-    }
+    // tap the ticket to copy the code
+    const ticket = document.getElementById("ticket");
+    const label = document.getElementById("ticketLabel");
+    ticket.onclick = () => {
+      const done = () => {
+        label.textContent = "Copied! 💜";
+        setTimeout(() => { label.textContent = "Your secret code · tap to copy"; }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(gift.code).then(done).catch(done);
+      } else {
+        done();
+      }
+    };
 
     const modal = document.getElementById("modal");
     modal.hidden = false;

@@ -63,6 +63,26 @@ body {
 /* ---------- Screen 1: gift box ---------- */
 .box-screen { position: relative; z-index: 1; }
 
+.photo-frame {
+  width: clamp(150px, 42vw, 200px);
+  aspect-ratio: 3 / 4;
+  margin-bottom: 26px;
+  border-radius: 18px;
+  padding: 8px;
+  background: linear-gradient(160deg, rgba(255,255,255,.18), rgba(255,255,255,.05));
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 24px 50px -22px rgba(0,0,0,.7);
+  transform: rotate(-3deg);
+  animation: cardIn .8s both;
+}
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
 .box-eyebrow {
   font-family: "Poppins";
   letter-spacing: .35em;

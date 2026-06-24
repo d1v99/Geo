@@ -17,10 +17,13 @@
 
 const CONFIG = {
   // Who this is for — shows on the front of the gift box.
-  recipientName: "Beautiful",
+  recipientName: "Georgiana",
 
   // Who it's from.
-  fromName: "Me",
+  fromName: "Victor",
+
+  // Photo shown on the opening screen. Leave as "" to hide it.
+  photo: "assets/us.jpeg",
 
   // The big line on the opening screen.
   openingTitle: "A little something for you",

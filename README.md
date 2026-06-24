@@ -25,7 +25,8 @@ Then text her the link. 💌
 Open **`gifts.js`** — it's the only file you need to touch. Everything is
 explained with comments at the top. In short:
 
-- Edit `CONFIG` to set her name, your name, and the messages.
+- Edit `CONFIG` to set her name, your name, the messages, and the photo
+  (`photo: "assets/us.jpeg"` — swap in any image, or set it to `""` to hide it).
 - Each gift is a `{ ... }` block in the `GIFTS` list. Copy one, paste it,
   change the words, save.
 

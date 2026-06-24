@@ -29,6 +29,10 @@ function spawnHearts() {
 
 /* ---------- config text ---------- */
 function applyConfig() {
+  if (CONFIG.photo) {
+    document.getElementById("photo").src = CONFIG.photo;
+    document.getElementById("photoFrame").hidden = false;
+  }
   document.getElementById("boxEyebrow").textContent = "For " + CONFIG.recipientName;
   document.getElementById("boxTitle").textContent = CONFIG.openingTitle;
   document.getElementById("boxHint").textContent = CONFIG.openingSubtitle;

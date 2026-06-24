@@ -79,6 +79,16 @@
   .screen.fade-in  { animation: fadeIn .7s ease forwards; }
   @keyframes fadeOut { to { opacity: 0; transform: scale(.96); } }
   @keyframes fadeIn  { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; } }
+  /* screen 1.5: apology letter */
+  .letter-screen { z-index: 1; position: relative; }
+  .letter { max-width: 40ch; }
+  .letter-title { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 600; font-size: clamp(36px, 9vw, 60px); color: var(--gold-soft); margin-bottom: 30px; opacity: 0; animation: lineIn 1s ease forwards; }
+  .letter-line { font-family: "Cormorant Garamond", serif; font-size: clamp(18px, 4.6vw, 23px); line-height: 1.55; color: var(--ink); margin-bottom: 14px; opacity: 0; animation: lineIn .9s ease forwards; }
+  .letter-line.final { color: var(--gold-soft); margin-top: 22px; font-size: clamp(19px, 4.8vw, 25px); }
+  @keyframes lineIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .continue-btn { margin-top: 38px; background: linear-gradient(160deg, var(--violet-1), var(--violet-2)); color: #fff; border: none; border-radius: 999px; padding: 15px 30px; font-family: inherit; font-weight: 500; font-size: 15px; cursor: pointer; box-shadow: 0 16px 36px -14px rgba(138,92,240,.8); opacity: 0; transition: transform .15s; }
+  .continue-btn:active { transform: scale(.96); }
+
   /* screen 2 */
   .gifts-screen { justify-content: flex-start; z-index: 1; position: relative; }
   .gifts-header { padding: 48px 0 28px; }
@@ -148,6 +158,15 @@
     <p class="box-hint" id="boxHint">Tap the box to open your surprise</p>
   </section>
 
+  <!-- SCREEN 1.5: apology letter -->
+  <section id="letterScreen" class="screen letter-screen" hidden>
+    <div class="letter">
+      <h2 class="letter-title" id="letterTitle">I'm sorry</h2>
+      <div class="letter-lines" id="letterLines"></div>
+      <button class="continue-btn" id="continueBtn">There's something for you 💜</button>
+    </div>
+  </section>
+
   <!-- SCREEN 2: pick a box -->
   <main id="giftsScreen" class="screen gifts-screen" hidden>
     <header class="gifts-header">
@@ -190,6 +209,22 @@
     photo: "assets/us.jpeg",          // set to "" to hide the photo
     openingTitle: "A little something for you",
     openingSubtitle: "Tap the box to open your surprise",
+
+    // the apology letter shown after the box opens (before the gifts)
+    apology: {
+      title: "I'm sorry",
+      lines: [
+        "Sorry for the days, I spoke without thinking.",
+        "Sorry for the nights, I stayed silent when you needed me.",
+        "Sorry for the moments my emotions were louder than my love.",
+        "Sorry for overreacting when all you wanted was peace.",
+        "Sorry for the words I never meant but still said.",
+        "Sorry for not knowing how to explain what I feel inside.",
+        "Sorry for the distance that grew from misunderstandings.",
+        "And most of all, sorry for making you feel like you were anything less than important to me.",
+      ],
+      button: "There's something for you 💜",
+    },
 
     // shown before she picks
     pickPrompt: "Three mystery boxes, but you can only keep one. Tap the one your heart wants 💜",
@@ -252,6 +287,7 @@
     spawnHearts();
     applyConfig();
     document.getElementById("giftbox").addEventListener("click", openBox);
+    document.getElementById("continueBtn").addEventListener("click", showGifts);
   }
 
   function spawnHearts() {
@@ -276,6 +312,8 @@
     document.getElementById("boxEyebrow").textContent = "For " + CONFIG.recipientName;
     document.getElementById("boxTitle").textContent = CONFIG.openingTitle;
     document.getElementById("boxHint").textContent = CONFIG.openingSubtitle;
+    document.getElementById("letterTitle").textContent = CONFIG.apology.title;
+    document.getElementById("continueBtn").textContent = CONFIG.apology.button;
     document.getElementById("giftsGreeting").textContent = CONFIG.greeting;
     document.getElementById("giftsSub").textContent = CONFIG.pickPrompt;
     document.getElementById("loveNote").textContent = CONFIG.loveNote;
@@ -288,16 +326,46 @@
     giftbox.classList.add("is-open");
     burst();
     const boxScreen = document.getElementById("boxScreen");
-    const giftsScreen = document.getElementById("giftsScreen");
+    const letterScreen = document.getElementById("letterScreen");
     setTimeout(() => {
       boxScreen.classList.add("fade-out");
       setTimeout(() => {
         boxScreen.hidden = true;
-        giftsScreen.hidden = false;
-        giftsScreen.classList.add("fade-in");
-        buildCards();
+        letterScreen.hidden = false;
+        letterScreen.classList.add("fade-in");
+        buildLetter();
       }, 480);
     }, 650);
+  }
+
+  function buildLetter() {
+    const wrap = document.getElementById("letterLines");
+    wrap.innerHTML = "";
+    const lines = CONFIG.apology.lines;
+    // each line fades in after the title, then the button appears last
+    lines.forEach((text, i) => {
+      const p = document.createElement("p");
+      p.className = "letter-line" + (i === lines.length - 1 ? " final" : "");
+      p.textContent = text;
+      p.style.animationDelay = 0.6 + i * 0.7 + "s";
+      wrap.appendChild(p);
+    });
+    const btn = document.getElementById("continueBtn");
+    btn.style.animation = "lineIn 1s ease forwards";
+    btn.style.animationDelay = 0.9 + lines.length * 0.7 + "s";
+  }
+
+  function showGifts() {
+    const letterScreen = document.getElementById("letterScreen");
+    const giftsScreen = document.getElementById("giftsScreen");
+    letterScreen.classList.remove("fade-in");
+    letterScreen.classList.add("fade-out");
+    setTimeout(() => {
+      letterScreen.hidden = true;
+      giftsScreen.hidden = false;
+      giftsScreen.classList.add("fade-in");
+      buildCards();
+    }, 480);
   }
 
   function burst() {

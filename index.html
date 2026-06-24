@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#1a0f14" />
+  <meta name="theme-color" content="#1d1330" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>A Surprise For You 💛</title>
+  <title>A Surprise For You 💜</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -22,16 +22,16 @@
 
   <style>
   :root {
-    --bg-1: #1a0f14;
-    --bg-2: #2a131f;
-    --ink: #fdf3f0;
-    --muted: #d9b8c0;
-    --gold: #e7c08a;
-    --gold-soft: #f3dcb8;
-    --rose-1: #ff9aae;   --rose-2: #f25c7a;
-    --violet-1: #c9a7ff; --violet-2: #8a5cf0;
+    --bg-1: #1d1330;
+    --bg-2: #2c1d48;
+    --ink: #f6f0fb;
+    --muted: #cdbce0;
+    --gold: #cbabf2;       /* "accent" — now a soft lilac */
+    --gold-soft: #e9dcff;  /* light lilac */
+    --rose-1: #d9b3ff;   --rose-2: #a86ff0;   /* massage box — lilac */
+    --violet-1: #c9a7ff; --violet-2: #8a5cf0; /* lashes box — deeper lilac */
     --amber-1: #ffcf8a;  --amber-2: #f29c3c;
-    --emerald-1: #9fe6c1;--emerald-2: #3cb886;
+    --emerald-1: #bdb0ff;--emerald-2: #7d8cf0; /* sushi box — periwinkle lilac */
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   [hidden] { display: none !important; }
@@ -40,7 +40,7 @@
     font-family: "Poppins", system-ui, sans-serif;
     color: var(--ink);
     background:
-      radial-gradient(1200px 600px at 50% -10%, #3a1626 0%, transparent 60%),
+      radial-gradient(1200px 600px at 50% -10%, #432d68 0%, transparent 60%),
       linear-gradient(160deg, var(--bg-1), var(--bg-2));
     min-height: 100vh;
     overflow-x: hidden;
@@ -62,8 +62,8 @@
   .box-title { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: clamp(30px, 7vw, 52px); line-height: 1.1; max-width: 12ch; margin-bottom: 42px; }
   .giftbox { --size: 150px; position: relative; width: var(--size); height: var(--size); background: none; border: none; cursor: pointer; margin-bottom: 36px; animation: bob 2.4s ease-in-out infinite; }
   @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-  .giftbox__body { position: absolute; bottom: 0; left: 8%; width: 84%; height: 68%; border-radius: 8px; background: linear-gradient(160deg, var(--rose-1), var(--rose-2)); box-shadow: 0 24px 50px -18px rgba(242, 92, 122, .7); }
-  .giftbox__lid { position: absolute; top: 8%; left: 0; width: 100%; height: 28%; border-radius: 8px; background: linear-gradient(160deg, #ffb3c2, var(--rose-2)); transform-origin: center bottom; transition: transform .6s cubic-bezier(.5,-0.4,.4,1.4), opacity .6s; z-index: 3; }
+  .giftbox__body { position: absolute; bottom: 0; left: 8%; width: 84%; height: 68%; border-radius: 8px; background: linear-gradient(160deg, var(--rose-1), var(--rose-2)); box-shadow: 0 24px 50px -18px rgba(138, 92, 240, .7); }
+  .giftbox__lid { position: absolute; top: 8%; left: 0; width: 100%; height: 28%; border-radius: 8px; background: linear-gradient(160deg, #e6cfff, var(--rose-2)); transform-origin: center bottom; transition: transform .6s cubic-bezier(.5,-0.4,.4,1.4), opacity .6s; z-index: 3; }
   .giftbox__ribbon { position: absolute; top: 0; left: 50%; width: 16%; height: 100%; transform: translateX(-50%); background: linear-gradient(var(--gold-soft), var(--gold)); }
   .giftbox__bow { position: absolute; top: -22px; left: 50%; width: 46px; height: 30px; transform: translateX(-50%); }
   .giftbox__bow::before, .giftbox__bow::after { content: ""; position: absolute; top: 0; width: 22px; height: 30px; background: linear-gradient(var(--gold-soft), var(--gold)); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
@@ -118,16 +118,16 @@
   /* modal */
   .modal { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; }
   .modal__backdrop { position: absolute; inset: 0; background: rgba(10, 5, 8, .7); animation: fadeIn .3s; }
-  .modal__card { position: relative; z-index: 1; width: 100%; max-width: 380px; background: linear-gradient(160deg, #fff7f2, #ffe9ee); color: #2a131f; border-radius: 24px; padding: 36px 28px 30px; text-align: center; box-shadow: 0 30px 70px -20px rgba(0,0,0,.6); animation: popIn .4s cubic-bezier(.3,1.4,.5,1); }
+  .modal__card { position: relative; z-index: 1; width: 100%; max-width: 380px; background: linear-gradient(160deg, #faf6ff, #efe6ff); color: #2a1840; border-radius: 24px; padding: 36px 28px 30px; text-align: center; box-shadow: 0 30px 70px -20px rgba(0,0,0,.6); animation: popIn .4s cubic-bezier(.3,1.4,.5,1); }
   @keyframes popIn { from { transform: scale(.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-  .modal__close { position: absolute; top: 8px; right: 12px; background: none; border: none; font-size: 34px; line-height: 1; color: #b88; cursor: pointer; padding: 6px 12px; }
+  .modal__close { position: absolute; top: 8px; right: 12px; background: none; border: none; font-size: 34px; line-height: 1; color: #a98cc8; cursor: pointer; padding: 6px 12px; }
   .modal__emoji { font-size: 48px; margin-bottom: 8px; }
   .modal__title { font-family: "Cormorant Garamond", serif; font-size: 30px; font-weight: 600; margin-bottom: 8px; }
-  .modal__desc { font-size: 14px; line-height: 1.6; color: #6b4a52; margin-bottom: 20px; }
-  .voucher { border: 2px dashed #e2a0b0; border-radius: 14px; padding: 14px; margin-bottom: 16px; }
-  .voucher__label { display: block; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: #b06a7a; margin-bottom: 6px; }
-  .voucher__code { font-size: 26px; font-weight: 600; letter-spacing: .1em; color: #c2415f; }
-  .modal__redeem { font-size: 13px; color: #8a5a64; }
+  .modal__desc { font-size: 14px; line-height: 1.6; color: #5e4a78; margin-bottom: 20px; }
+  .voucher { border: 2px dashed #c3a3ea; border-radius: 14px; padding: 14px; margin-bottom: 16px; }
+  .voucher__label { display: block; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: #8a6ab0; margin-bottom: 6px; }
+  .voucher__code { font-size: 26px; font-weight: 600; letter-spacing: .1em; color: #7c45c8; }
+  .modal__redeem { font-size: 13px; color: #6e5690; }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
   </style>
 </head>
@@ -152,8 +152,8 @@
   <main id="giftsScreen" class="screen gifts-screen" hidden>
     <header class="gifts-header">
       <p class="gifts-eyebrow" id="giftsEyebrow">Pick a box</p>
-      <h2 class="gifts-title" id="giftsGreeting">Hi 💛</h2>
-      <p class="gifts-sub" id="giftsSub">Choose just one — you can only keep one, so choose with your heart 💛</p>
+      <h2 class="gifts-title" id="giftsGreeting">Hi 💜</h2>
+      <p class="gifts-sub" id="giftsSub">Choose just one — you can only keep one, so choose with your heart 💜</p>
     </header>
     <div class="gift-grid" id="giftGrid"></div>
     <footer class="love-note">
@@ -174,7 +174,7 @@
         <span class="voucher__label">Gift code</span>
         <span class="voucher__code" id="modalCode"></span>
       </div>
-      <p class="modal__redeem">Show this code to me to redeem your gift 💛</p>
+      <p class="modal__redeem">Show this code to me to redeem your gift 💜</p>
     </div>
   </div>
 
@@ -186,18 +186,19 @@
   const CONFIG = {
     recipientName: "Georgiana",
     fromName: "Victor",
+    greeting: "Hey my love 💜",        // big line on the gifts screen
     photo: "assets/us.jpeg",          // set to "" to hide the photo
     openingTitle: "A little something for you",
     openingSubtitle: "Tap the box to open your surprise",
 
     // shown before she picks
-    pickPrompt: "Three mystery boxes, but you can only keep one. Tap the one your heart wants 💛",
+    pickPrompt: "Three mystery boxes, but you can only keep one. Tap the one your heart wants 💜",
     // shown after she picks (use {gift} for the gift name)
-    chosenPrompt: "Ahh you chose {gift}! Amazing pick — it's all yours 💛",
+    chosenPrompt: "Ahh you chose {gift}! Amazing pick — it's all yours 💜",
 
     loveNote:
       "Whatever you picked, you deserve it and so much more. " +
-      "I love spoiling you. There'll be more surprises soon. I love you. 💛",
+      "I love spoiling you. There'll be more surprises soon. I love you. 💜",
   };
 
   const GIFTS = [
@@ -255,7 +256,7 @@
 
   function spawnHearts() {
     const layer = document.querySelector(".hearts");
-    const emojis = ["💛", "💕", "✨", "🤍", "💗"];
+    const emojis = ["💜", "💕", "✨", "🤍", "💗"];
     for (let i = 0; i < 14; i++) {
       const h = document.createElement("span");
       h.textContent = emojis[i % emojis.length];
@@ -275,7 +276,7 @@
     document.getElementById("boxEyebrow").textContent = "For " + CONFIG.recipientName;
     document.getElementById("boxTitle").textContent = CONFIG.openingTitle;
     document.getElementById("boxHint").textContent = CONFIG.openingSubtitle;
-    document.getElementById("giftsGreeting").textContent = "Hi " + CONFIG.recipientName + " 💛";
+    document.getElementById("giftsGreeting").textContent = CONFIG.greeting;
     document.getElementById("giftsSub").textContent = CONFIG.pickPrompt;
     document.getElementById("loveNote").textContent = CONFIG.loveNote;
     document.getElementById("signed").textContent = "— " + CONFIG.fromName;
@@ -301,7 +302,7 @@
 
   function burst() {
     const layer = document.querySelector(".hearts");
-    const emojis = ["💛", "💕", "✨", "🎉", "💗"];
+    const emojis = ["💜", "💕", "✨", "🎉", "💗"];
     for (let i = 0; i < 22; i++) {
       const h = document.createElement("span");
       h.textContent = emojis[i % emojis.length];
@@ -340,7 +341,7 @@
             '<span class="value">' + gift.value + '</span>' +
             '<h3>' + gift.title + '</h3>' +
             '<span class="sub">' + gift.subtitle + '</span>' +
-            '<span class="redeem-btn">Redeem 💛</span>' +
+            '<span class="redeem-btn">Redeem 💜</span>' +
           '</div>' +
         '</div>';
 

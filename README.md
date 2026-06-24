@@ -5,45 +5,34 @@ personal collection of gift cards (a massage, lashes, nails, date night…).
 She opens a gift box, flips each card to reveal the surprise, and gets a
 voucher code to "redeem" with you.
 
-## How to use it
+Everything lives in a single file: **`index.html`** (plus the photo in
+`assets/`). Nothing to install.
 
-**To see it:** just open `index.html` in any web browser. That's it — no
-installation, no build step.
+## How to see it
 
-**To send it to her:** put it online for free (pick one):
+Just open `index.html` in any web browser. To share it with her, put it
+online for free:
 
-- **Netlify Drop** — go to <https://app.netlify.com/drop> and drag the whole
-  folder in. You get a link instantly.
-- **GitHub Pages** — in this repo go to *Settings → Pages*, set the branch,
-  and your site goes live at a github.io link.
-- **Vercel** — import the repo at <https://vercel.com/new>.
+- **GitHub Pages** — *Settings → Pages*, choose this branch, root folder.
+  Your link becomes `https://<your-username>.github.io/<repo>/`.
+- **Netlify Drop** — drag the folder onto <https://app.netlify.com/drop>.
 
-Then text her the link. 💌
+> Tip: phones cache websites hard. After an update, open the link in a
+> private/incognito tab (or add `?v=2` to the end of the URL) to be sure
+> you're seeing the latest version.
 
 ## How to add or change gifts
 
-Open **`gifts.js`** — it's the only file you need to touch. Everything is
-explained with comments at the top. In short:
+Open **`index.html`** and scroll to the block marked
+**"⬇ EDIT YOUR GIFTS HERE ⬇"**. That's the only part you change:
 
-- Edit `CONFIG` to set her name, your name, the messages, and the photo
-  (`photo: "assets/us.jpeg"` — swap in any image, or set it to `""` to hide it).
-- Each gift is a `{ ... }` block in the `GIFTS` list. Copy one, paste it,
-  change the words, save.
+- `CONFIG` — her name, your name, the photo, and the messages.
+- `GIFTS` — each gift is a `{ ... }` block; copy one, edit the words, save.
 
-Each gift's `status` controls how it shows:
+Each gift's `status`:
 
-| status        | what she sees                                  |
-|---------------|------------------------------------------------|
-| `"available"` | ready to flip + redeem (shows a gift code)     |
-| `"soon"`      | stays a mystery, marked "Coming soon"          |
-| `"redeemed"`  | shown with a "REDEEMED" stamp once she's used it|
-
-That's the whole idea: keep adding new gifts over time and the page becomes
-an ongoing little stream of surprises.
-
-## Files
-
-- `index.html` — the page
-- `styles.css` — the looks
-- `script.js` — the behaviour (you can ignore this)
-- `gifts.js` — **your gifts & messages (edit this)**
+| status        | what she sees                                   |
+|---------------|-------------------------------------------------|
+| `"available"` | ready to flip + redeem (shows a gift code)      |
+| `"soon"`      | stays a mystery, marked "Coming soon"           |
+| `"redeemed"`  | shown with a "REDEEMED" stamp once it's used    |

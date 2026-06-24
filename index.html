@@ -26,12 +26,12 @@
     --bg-2: #2c1d48;
     --ink: #f6f0fb;
     --muted: #cdbce0;
-    --gold: #cbabf2;       /* "accent" — now a soft lilac */
+    --gold: #cbabf2;       /* "accent" - now a soft lilac */
     --gold-soft: #e9dcff;  /* light lilac */
-    --rose-1: #d9b3ff;   --rose-2: #a86ff0;   /* massage box — lilac */
-    --violet-1: #c9a7ff; --violet-2: #8a5cf0; /* lashes box — deeper lilac */
+    --rose-1: #d9b3ff;   --rose-2: #a86ff0;   /* massage box - lilac */
+    --violet-1: #c9a7ff; --violet-2: #8a5cf0; /* lashes box - deeper lilac */
     --amber-1: #ffcf8a;  --amber-2: #f29c3c;
-    --emerald-1: #bdb0ff;--emerald-2: #7d8cf0; /* sushi box — periwinkle lilac */
+    --emerald-1: #bdb0ff;--emerald-2: #7d8cf0; /* sushi box - periwinkle lilac */
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   [hidden] { display: none !important; }
@@ -176,12 +176,12 @@
     <header class="gifts-header">
       <p class="gifts-eyebrow" id="giftsEyebrow">Pick a box</p>
       <h2 class="gifts-title" id="giftsGreeting">Hi 💜</h2>
-      <p class="gifts-sub" id="giftsSub">Choose just one — you can only keep one, so choose with your heart 💜</p>
+      <p class="gifts-sub" id="giftsSub">Choose just one. You can only keep one, so choose with your heart 💜</p>
     </header>
     <div class="gift-grid" id="giftGrid"></div>
     <footer class="love-note">
       <p id="loveNote"></p>
-      <p class="signed" id="signed">— Me</p>
+      <p class="signed" id="signed">Love, Me</p>
     </footer>
   </main>
 
@@ -234,7 +234,7 @@
     // shown before she picks
     pickPrompt: "Three mystery boxes, but you can only keep one. Tap the one your heart wants 💜",
     // shown after she picks (use {gift} for the gift name)
-    chosenPrompt: "Ahh you chose {gift}! Amazing pick — it's all yours 💜",
+    chosenPrompt: "Ahh you chose {gift}! Amazing pick, it's all yours 💜",
 
     loveNote:
       "Whatever you picked, you deserve it and so much more. " +
@@ -248,7 +248,7 @@
     {
       emoji: "💆‍♀️", title: "A Relaxing Massage", subtitle: "Full hour, on me",
       value: "1 Massage",
-      description: "Book your next massage anywhere you like — I've got the bill. Go relax, you've earned it.",
+      description: "Book your next massage anywhere you like, I've got the bill. Go relax, you've earned it.",
       code: "RELAX-01", accent: "rose",
     },
     {
@@ -260,7 +260,7 @@
     {
       emoji: "🍣", title: "Sushi Buffet", subtitle: "All you can eat, my shout",
       value: "Sushi for 2",
-      description: "All-you-can-eat sushi buffet on me. Bring your appetite — we're getting everything on the menu.",
+      description: "All-you-can-eat sushi buffet on me. Bring your appetite, we're getting everything on the menu.",
       code: "SUSHI-03", accent: "emerald",
     },
   ];
@@ -325,7 +325,7 @@
     document.getElementById("giftsGreeting").textContent = CONFIG.greeting;
     document.getElementById("giftsSub").textContent = CONFIG.pickPrompt;
     document.getElementById("loveNote").textContent = CONFIG.loveNote;
-    document.getElementById("signed").textContent = "— " + CONFIG.fromName;
+    document.getElementById("signed").textContent = "Love, " + CONFIG.fromName;
   }
 
   function openBox() {
@@ -434,7 +434,7 @@
   function onCardClick(i) {
     const chosen = getChosen();
     if (chosen === null) {
-      // first ever pick — lock it in
+      // first ever pick - lock it in
       setChosen(i);
       revealChoice(i, true);
       return;

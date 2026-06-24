@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a0f14" />
+  <title>A Surprise For You 💛</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Floating hearts background -->
+  <div class="hearts" aria-hidden="true"></div>
+
+  <!-- ============ SCREEN 1: THE GIFT BOX ============ -->
+  <section id="boxScreen" class="screen box-screen">
+    <p class="box-eyebrow" id="boxEyebrow">For Beautiful</p>
+    <h1 class="box-title" id="boxTitle">A little something for you</h1>
+
+    <button class="giftbox" id="giftbox" aria-label="Open your surprise">
+      <div class="giftbox__lid">
+        <span class="giftbox__bow"></span>
+      </div>
+      <div class="giftbox__body">
+        <span class="giftbox__ribbon"></span>
+      </div>
+    </button>
+
+    <p class="box-hint" id="boxHint">Tap the box to open your surprise</p>
+  </section>
+
+  <!-- ============ SCREEN 2: THE GIFTS ============ -->
+  <main id="giftsScreen" class="screen gifts-screen" hidden>
+    <header class="gifts-header">
+      <p class="gifts-eyebrow">Your gift collection</p>
+      <h2 class="gifts-title" id="giftsGreeting">Hi 💛</h2>
+      <p class="gifts-sub">Tap any card to reveal your gift. Redeem whenever you like.</p>
+    </header>
+
+    <div class="gift-grid" id="giftGrid"><!-- cards injected by script.js --></div>
+
+    <footer class="love-note">
+      <p id="loveNote"></p>
+      <p class="signed" id="signed">— Me</p>
+    </footer>
+  </main>
+
+  <!-- ============ REDEEM POPUP ============ -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__card" role="dialog" aria-modal="true">
+      <button class="modal__close" data-close aria-label="Close">&times;</button>
+      <div class="modal__emoji" id="modalEmoji">🎁</div>
+      <h3 class="modal__title" id="modalTitle"></h3>
+      <p class="modal__desc" id="modalDesc"></p>
+      <div class="voucher">
+        <span class="voucher__label">Gift code</span>
+        <span class="voucher__code" id="modalCode"></span>
+      </div>
+      <p class="modal__redeem">Show this code to redeem your gift 💛</p>
+    </div>
+  </div>
+
+  <script src="gifts.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

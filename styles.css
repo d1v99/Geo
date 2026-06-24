@@ -16,6 +16,10 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Anything with the `hidden` attribute must stay hidden, even when a
+   class below sets display:flex (otherwise the popup/screens leak through). */
+[hidden] { display: none !important; }
+
 html, body { height: 100%; }
 
 body {

@@ -1,0 +1,39 @@
+# Copy to config.toml and edit. Every setting is optional; these are the defaults.
+
+[alerts]
+ntfy_server = "https://ntfy.sh"
+# Pick a long, hard to guess name. Anyone who knows it can read your alerts.
+# Subscribe to the same name in the ntfy phone app.
+ntfy_topic = ""
+cooldown_s = 60      # minimum gap between repeat alerts from one sensor
+arm_delay_s = 60     # time to leave the house after arming
+
+[web]
+host = "127.0.0.1"   # use "0.0.0.0" to open the dashboard to your home network (pin required)
+port = 8080
+pin = ""             # needed to arm or disarm from the dashboard
+
+[sensors.rssi]
+enabled = true       # no-hardware mode: this computer's own WiFi signal
+interface = ""       # blank picks the first WiFi card (Linux only setting)
+interval_s = 1.0
+
+[sensors.esp32]
+enabled = true
+port = 5005          # UDP port the ESP32 sensors report to
+offline_after_s = 30 # alert when an armed sensor goes silent this long
+
+[probes]
+min_rssi = -60       # only count phones at least this strong (closer to 0 = nearer)
+alert_alone = false  # true: alert on a nearby phone even with no motion
+
+# Tuning. Lower threshold = more sensitive, more false alarms.
+[detector.csi]
+threshold = 4.0
+trigger_s = 1.0
+clear_s = 10.0
+
+[detector.rssi]
+threshold = 3.0
+trigger_s = 3.0
+clear_s = 20.0

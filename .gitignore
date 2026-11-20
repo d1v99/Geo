@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+config.toml
+state.json
+firmware/esp32_sensor/src/config.h
+firmware/esp32_sensor/.pio/
+firmware/esp32_sensor/sdkconfig
+firmware/esp32_sensor/sdkconfig.esp32dev
+firmware/esp32_sensor/dependencies.lock
+firmware/esp32_sensor/managed_components/
